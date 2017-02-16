@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.project.ad.testing_app_project">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/testing"
+        android:label="QuickQuiz"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Registration.SignUp" />
+        <activity android:name=".Starting" />
+        <activity android:name=".Registration.MainActivity" />
+        <activity
+            android:name=".Tab_profile.My_Profile"
+            android:label="@string/title_activity_my__profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Test.Quiz" />
+        <activity android:name=".Test.Result" />
+        <activity android:name=".Tab_profile.tab2.Check_quiz" />
+        <activity android:name=".Tab_profile.tab1.StudentsResult" />
+        <activity android:name=".Tab_profile.tab1.StudentResult_innerGroups" />
+        <activity android:name=".Tab_profile.tab1.StudentResult_innerUserNames" />
+        <activity
+            android:name=".Tab_profile.tab1.Messages"
+            android:label="@string/title_activity_messages"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Tab_profile.tab1.ChatRoom"></activity>
+    </application>
+
+</manifest>

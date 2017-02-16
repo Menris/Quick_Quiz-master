@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.project.ad.testing_app_project.Tab_profile.My_Profile$PlaceholderFragment">
+
+    <ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
+        android:id="@+id/imageView_userPhoto"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Manage my quizes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_myQuizes"
+        android:layout_below="@+id/imageView_userPhoto"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_userEmail"
+        android:layout_below="@+id/textView_userName"
+        android:layout_alignStart="@+id/textView_userName"
+        android:layout_marginTop="27dp"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:id="@+id/textView_userName"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/btn_myQuizes"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp" />
+
+    <Button
+        android:text="Messages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_myQuizes"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btn_messages" />
+
+</RelativeLayout>

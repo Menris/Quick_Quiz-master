@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Testing_app_project</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="hint_name">Full Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+
+    <string name="title_activity_start_test">StartTest</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_profile">Profile</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_my__profile">My_Profile</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_messages">Messages</string>
+</resources>
