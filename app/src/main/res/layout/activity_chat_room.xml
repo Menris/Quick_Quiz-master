@@ -10,36 +10,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.project.ad.testing_app_project.Tab_profile.tab1.ChatRoom">
 
-
-
     <EditText
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/button2" />
+        android:layout_toStartOf="@+id/button2"
+        android:ems="10"
+        android:inputType="textPersonName" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/editText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/editText" />
+        android:layout_alignParentTop="true" />
 
     <Button
-        android:text="Send"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
         android:layout_alignBaseline="@+id/editText"
         android:layout_alignBottom="@+id/editText"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Send" />
 
 </RelativeLayout>

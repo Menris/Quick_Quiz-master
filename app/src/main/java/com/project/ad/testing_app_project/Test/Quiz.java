@@ -87,8 +87,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
         question = (TextView) findViewById(R.id.textView_question);
         QuestionProgressNumber = (TextView) findViewById(R.id.textView_ProgressNumber);
-        radioGroupAB = (RadioGroup)findViewById(R.id.radioGroupAB);
-        radioGroupCD = (RadioGroup)findViewById(R.id.radioGroupCD);
+        radioGroupAB = (RadioGroup) findViewById(R.id.radioGroupAB);
+        radioGroupCD = (RadioGroup) findViewById(R.id.radioGroupCD);
 
         ansA = (RadioButton) findViewById(R.id.radio_questionA);
         ansB = (RadioButton) findViewById(R.id.radio_questionB);
@@ -108,18 +108,23 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         questionCountRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.w("I have ", dataSnapshot.getChildrenCount() + " questions");
-                numOfQuestions = (int)dataSnapshot.getChildrenCount()-2;
+                Log.w("I have ", dataSnapshot.getChildrenCount() - 2 + " questions");
+                numOfQuestions = (int) dataSnapshot.getChildrenCount() - 2;
                 Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
                 quizTitle = quiz_question.getQuizTitle();
                 teacherID = quiz_question.getTeacherID();
+                getUserInfo();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
+        //add onclick to class
+        next_question.setOnClickListener(this);
+    }
+
+    public void getUserInfo() {
         DatabaseReference studentInfoRef = databaseReference.child("userInformation").child(user.getUid());
         studentInfoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -127,17 +132,14 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 Quiz_question userInfo = dataSnapshot.getValue(Quiz_question.class);
                 studentGroup = userInfo.getGroup();
                 studentName = userInfo.getName();
+                //showing first question on activity
+                showQuestion();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        //showing first question on activity
-        showQuestion();
-
-        //add onclick to class
-        next_question.setOnClickListener(this);
     }
 
     public void showQuestion() {
@@ -164,6 +166,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 String current_answerD = quiz_question.getAnswerD();
                 correct_answer = quiz_question.getCorrectAnswer();
                 QuestionProgressNumber.setText(counter.toString() + "/" + numOfQuestions);
+                Log.e("I have ", numOfQuestions.toString());
                 question.setText(current_Question);
                 ansA.setText(current_answerA);
                 ansB.setText(current_answerB);
@@ -193,7 +196,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             if (check_Radio) {
                 counter++;
                 if (myAnswer.equals(correct_answer)) {
-                        num_correctAnswers++;
+                    num_correctAnswers++;
                 }
                 showQuestion();
                 check_Radio = false;
@@ -222,8 +225,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                                 public void onClick(DialogInterface dialog, int id) {
 
                                     Intent intent = new Intent(getApplicationContext(), Result.class);
-                                    intent.putExtra("num_correctAnswers",num_correctAnswers.toString());
-                                    Log.w("My answers number is",num_correctAnswers.toString());
+                                    intent.putExtra("num_correctAnswers", num_correctAnswers.toString());
+                                    Log.w("My answers number is", num_correctAnswers.toString());
 
                                     Quiz_question quiz_question = new Quiz_question();
                                     quiz_question.setUserResult(num_correctAnswers.toString());
@@ -234,23 +237,23 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                                     DatabaseReference refToTeacherQuizID = databaseReference.child("userInformation").child(teacherID).child("teacherQuizes");
                                     DatabaseReference quizIDRef = refToTeacherQuizID.child(PIN);
                                     Map<String, Object> quizIDUpdates = new HashMap<String, Object>();
-                                    quizIDUpdates.put("quizID",PIN);
+                                    quizIDUpdates.put("quizID", PIN);
                                     quizIDRef.updateChildren(quizIDUpdates);
 
                                     //adding student result and student information to teachers profile
                                     DatabaseReference refToTeacher = databaseReference.child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups").child(studentGroup).child("userNames");
                                     DatabaseReference teacherRef = refToTeacher.child(studentName);
                                     Map<String, Object> teacherUpdates = new HashMap<String, Object>();
-                                    teacherUpdates.put("name",studentName);
-                                    teacherUpdates.put("group",studentGroup);
-                                    teacherUpdates.put("userResult",num_correctAnswers.toString());
+                                    teacherUpdates.put("name", studentName);
+                                    teacherUpdates.put("group", studentGroup);
+                                    teacherUpdates.put("userResult", num_correctAnswers.toString());
                                     teacherRef.updateChildren(teacherUpdates);
 
                                     //adding student group to teachers profile
                                     DatabaseReference refToGroup = databaseReference.child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups");
                                     DatabaseReference groupRef = refToGroup.child(studentGroup);
                                     Map<String, Object> groupUpdates = new HashMap<String, Object>();
-                                    groupUpdates.put("group",studentGroup);
+                                    groupUpdates.put("group", studentGroup);
                                     groupRef.updateChildren(groupUpdates);
 
 
@@ -258,9 +261,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                                     DatabaseReference refQuiz = databaseReference.child("userInformation").child(user.getUid()).child("myPassedQuizes");
                                     DatabaseReference hopperRef = refQuiz.child(PIN);
                                     Map<String, Object> hopperUpdates = new HashMap<String, Object>();
-                                    hopperUpdates.put("userResult",num_correctAnswers.toString());
-                                    hopperUpdates.put("quizTitle",quizTitle);
-                                    hopperUpdates.put("quizID",PIN);
+                                    hopperUpdates.put("userResult", num_correctAnswers.toString());
+                                    hopperUpdates.put("quizTitle", quizTitle);
+                                    hopperUpdates.put("quizID", PIN);
                                     hopperRef.updateChildren(hopperUpdates);
 
                                     startActivity(intent);
@@ -269,7 +272,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                             });
             AlertDialog alert = builder.create();
             alert.show();
-            
+
         }
 
 

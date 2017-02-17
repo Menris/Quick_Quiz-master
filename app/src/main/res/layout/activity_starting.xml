@@ -11,60 +11,88 @@
     tools:context="com.project.ad.testing_app_project.Starting">
 
     <TextView
-        android:text="QuickQuiz"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:id="@+id/textView2"
-        android:fontFamily="casual"
-        android:textSize="36sp"
-        android:textStyle="normal|bold"
-        android:textAllCaps="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/common_google_signin_btn_text_dark_default" />
+        android:layout_marginTop="112dp"
+        android:fontFamily="casual"
+        android:text="QuickQuiz"
+        android:textAllCaps="false"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="36sp"
+        android:textStyle="normal|bold" />
 
     <EditText
+        android:id="@+id/editText_pin"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_marginTop="45dp"
-        android:id="@+id/editText_pin"
-        android:background="@drawable/edittext"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/textColorPrimary"
-        android:hint="Enter PIN"
-        android:textColorHint="@color/textColorPrimary"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/edittext"
+        android:ems="10"
         android:fontFamily="casual"
+        android:gravity="center"
+        android:hint="Enter PIN"
+        android:inputType="number"
+        android:textColor="@color/textColorPrimary"
+        android:textColorHint="@color/textColorPrimary"
         android:textStyle="normal|italic" />
 
     <Button
-        android:text="ENTER"
-        android:textColor="@color/textColorPrimary"
+        android:id="@+id/btn_enter_pin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:id="@+id/btn_enter_pin"
-        android:layout_below="@+id/editText_pin"
-        android:background="@drawable/edittext"
         android:layout_alignEnd="@+id/editText_pin"
         android:layout_alignStart="@+id/editText_pin"
+        android:layout_below="@+id/editText_pin"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edittext"
         android:clickable="true"
         android:fontFamily="casual"
+        android:text="ENTER"
+        android:textColor="@color/textColorPrimary"
         android:textStyle="normal|bold" />
 
-    <TextView
-        android:text="Go to profile"
+    <Button
+        android:id="@+id/btn_manageGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView_profile"
-        android:textStyle="normal|bold"
+        android:layout_above="@+id/textView_profile"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/edittext"
         android:fontFamily="casual"
+        android:text="Manage Group"
+        android:textColor="@color/textColorPrimary"
+        android:textStyle="normal|bold"
+        android:layout_alignStart="@+id/btn_enter_pin"
+        android:layout_alignEnd="@+id/btn_enter_pin" />
+
+    <Button
+        android:id="@+id/btn_beaconConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_enter_pin"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/edittext"
+        android:fontFamily="casual"
+        android:text="Beacon Connect"
+        android:textColor="@color/textColorPrimary"
+        android:textStyle="normal|bold"
+        android:layout_alignStart="@+id/btn_enter_pin"
+        android:layout_alignEnd="@+id/btn_enter_pin" />
+
+    <TextView
+        android:id="@+id/textView_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="Go to profile"
+        android:textColor="@color/textColorPrimary"
         android:textSize="24sp"
+        android:textStyle="normal|bold"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/textColorPrimary"/>
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
