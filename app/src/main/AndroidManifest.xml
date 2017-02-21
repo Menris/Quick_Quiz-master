@@ -36,7 +36,8 @@
             android:name=".Tab_profile.tab1.Messages"
             android:label="@string/title_activity_messages"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Tab_profile.tab1.ChatRoom"></activity>
+        <activity android:name=".Tab_profile.tab1.ChatRoom" />
+        <activity android:name=".BeaconConnect"></activity>
     </application>
 
 </manifest>

@@ -64,6 +64,7 @@
         android:layout_marginBottom="23dp"
         android:background="@drawable/edittext"
         android:fontFamily="casual"
+        android:visibility="gone"
         android:text="Manage Group"
         android:textColor="@color/textColorPrimary"
         android:textStyle="normal|bold"

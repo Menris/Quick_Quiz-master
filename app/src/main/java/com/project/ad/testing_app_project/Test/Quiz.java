@@ -1,9 +1,11 @@
 package com.project.ad.testing_app_project.Test;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +24,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.project.ad.testing_app_project.BeaconConnect;
 import com.project.ad.testing_app_project.R;
+import com.project.ad.testing_app_project.Starting;
+import com.project.ad.testing_app_project.Tab_profile.tab2.Check_quiz;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +67,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     String studentName;
     //checking value for radiobuttons
     Boolean check_Radio = false;
+    ProgressDialog dialog;
 
     RadioButton ansA, ansB, ansC, ansD;
     RadioGroup radioGroupAB;
@@ -80,6 +86,17 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
         //set content view AFTER ABOVE sequence (to avoid crash)
         setContentView(R.layout.activity_quiz);
+
+        dialog = ProgressDialog.show(Quiz.this, "", "Loading...", true);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //showing first question on activity
+                showQuestion();
+                dialog.dismiss();
+            }
+        }, 2000);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -183,6 +200,14 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Quiz.this, Starting.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 
     @Override

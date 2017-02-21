@@ -29,6 +29,7 @@ import com.project.ad.testing_app_project.R;
 import com.project.ad.testing_app_project.Registration.MainActivity;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Messages extends AppCompatActivity {
 
@@ -37,6 +38,7 @@ public class Messages extends AppCompatActivity {
     public DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseUser user;
     ArrayList<String> groups = new ArrayList<String>();
+    String role, group, name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,33 +60,83 @@ public class Messages extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         lv_messages = (ListView) findViewById(R.id.listView_groupMessages);
-        Query ref = databaseReference.child("userInformation").child(user.getUid()).child("messages");
-        ref.addValueEventListener(new ValueEventListener() {
+        Query info = databaseReference.child("userInformation").child(user.getUid());
+
+        info.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                    Log.w("QuickQuiz", postSnapshot.getKey());
-                    groups.add(postSnapshot.getKey());
-                    final ArrayAdapter arrayAdapter = new ArrayAdapter(Messages.this, android.R.layout.simple_list_item_1, groups);
-                    lv_messages.setAdapter(arrayAdapter);
-                }
+                Log.w("Role ", quiz_question.getRole());
+                role = quiz_question.getRole();
+                group = quiz_question.getGroup();
+                name = quiz_question.getName();
+                addGroups();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                searchGroup();
             }
         });
+
+    }
+
+    public void addGroups(){
+        final Query ref;
+         if (Objects.equals(role, "teachers")) {
+             ref = databaseReference.child("userInformation").child(user.getUid()).child("messages");
+             ref.addValueEventListener(new ValueEventListener() {
+                 @Override
+                 public void onDataChange(DataSnapshot dataSnapshot) {
+                     Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
+                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                         Log.w("QuickQuizTeacher", postSnapshot.getKey());
+                         groups.add(postSnapshot.getKey());
+                         final ArrayAdapter arrayAdapter = new ArrayAdapter(Messages.this, android.R.layout.simple_list_item_1, groups);
+                         lv_messages.setAdapter(arrayAdapter);
+                     }
+                 }
+
+                 @Override
+                 public void onCancelled(DatabaseError databaseError) {
+                     searchGroup();
+                 }
+             });
+         } else {
+             ref = databaseReference.child("messages").child("groups").child(group).child("teachers");
+             ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                 @Override
+                 public void onDataChange(DataSnapshot dataSnapshot) {
+                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        // Quiz_question quiz_question = postSnapshot.getValue(Quiz_question.class);
+                         Log.w("QuickQuizStudent", postSnapshot.child("name").getValue().toString());
+                         String add = postSnapshot.child("name").getValue().toString();
+                         groups.add(add);
+                         final ArrayAdapter arrayAdapter = new ArrayAdapter(Messages.this, android.R.layout.simple_list_item_1, groups);
+                         lv_messages.setAdapter(arrayAdapter);
+                     }
+                 }
+
+                 @Override
+                 public void onCancelled(DatabaseError databaseError) {
+                     searchGroup();
+                 }
+             });
+         }
+
+
         lv_messages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getApplicationContext(),ChatRoom.class);
-                intent.putExtra("group_name",((TextView)view).getText().toString() );
+                Intent intent = new Intent(getApplicationContext(), ChatRoom.class);
+                intent.putExtra("group_name", group);
+                if (role == "teachers") {
+                    intent.putExtra("teacher_name", name);
+                } else {
+                    intent.putExtra("teacher_name", ((TextView)view).getText().toString() );
+                }
+                intent.putExtra("role", role);
                 startActivity(intent);
             }
         });
-
-
     }
 
     @Override

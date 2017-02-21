@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.ad.testing_app_project.R;
+
+import java.util.Objects;
+
 public class ChatRoom extends AppCompatActivity {
 
 
@@ -27,7 +30,7 @@ public class ChatRoom extends AppCompatActivity {
     public String courseTitle;
     public Intent intent;
 
-    String groupName;
+    String groupName, teacherName, role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,14 @@ public class ChatRoom extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         //getting PIN number from "Starting" class
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             groupName = extras.getString("group_name");
+            teacherName = extras.getString("teacher_name");
+            role = extras.getString("role");
             Log.w("Group Name", groupName);
         }
 
@@ -49,15 +55,17 @@ public class ChatRoom extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText input = (EditText) findViewById(R.id.editText);
-                FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("chat").push()
+                FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("teachers").child(teacherName).child("chat").push()
                         .setValue(new Message(input.getText().toString(),
                                 FirebaseAuth.getInstance().getCurrentUser().getEmail()));
                 input.setText("");
             }
         });
+        if (Objects.equals(role, "teachers")) {
+            databaseReference.child("messages").child("groups").child(groupName).child("teachers").child(teacherName).child("name").setValue(teacherName);
+        }
 
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("chat");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("teachers").child(teacherName).child("chat");
 
 
 
