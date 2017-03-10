@@ -127,10 +127,12 @@ public class Messages extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), ChatRoom.class);
-                intent.putExtra("group_name", group);
-                if (role == "teachers") {
+
+                if (Objects.equals(role, "teachers")) {
                     intent.putExtra("teacher_name", name);
+                    intent.putExtra("group_name", ((TextView)view).getText().toString());
                 } else {
+                    intent.putExtra("group_name", group);
                     intent.putExtra("teacher_name", ((TextView)view).getText().toString() );
                 }
                 intent.putExtra("role", role);

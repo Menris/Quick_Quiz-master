@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -216,6 +219,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         quiz_question_myAnswer.setMyAnswer(myAnswer);
         //press on button NEXT question and checking the number of question
         if (view == next_question && counter < numOfQuestions) {
+            //finish flashing the NEXT button
+            view.clearAnimation();
 
             FirebaseDatabase.getInstance().getReference().child("userInformation").child(user.getUid()).child("myPassedQuizes").child(PIN).child("Question " + counter).setValue(quiz_question_myAnswer);
             if (check_Radio) {
@@ -311,6 +316,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.radio_questionA:
                 if (checked) {
+                    buttonFlash();
                     myAnswer = "A";
                     check_Radio = true;
                     radioGroupCD.clearCheck();
@@ -322,6 +328,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 }
             case R.id.radio_questionB:
                 if (checked) {
+                    buttonFlash();
                     myAnswer = "B";
                     check_Radio = true;
                     radioGroupCD.clearCheck();
@@ -333,6 +340,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 }
             case R.id.radio_questionC:
                 if (checked) {
+                    buttonFlash();
                     myAnswer = "C";
                     radioGroupAB.clearCheck();
                     check_Radio = true;
@@ -344,6 +352,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 }
             case R.id.radio_questionD:
                 if (checked) {
+                    buttonFlash();
                     myAnswer = "D";
                     check_Radio = true;
                     radioGroupAB.clearCheck();
@@ -356,5 +365,14 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void buttonFlash() {
+        final Animation animation = new AlphaAnimation(1, 0.3f); // Change alpha from fully visible to invisible
+        animation.setDuration(500); // duration - half a second
+        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+        next_question.startAnimation(animation);
     }
 }

@@ -45,7 +45,7 @@ public class StudentResult_innerGroups extends AppCompatActivity {
             @Override
             protected void populateView(View view, Quiz_question person, int position) {
                 //Populate the item
-                Log.w("Amir", person.getGroup());
+                Log.w("Groups", person.getGroup());
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setText(person.getGroup());
             }

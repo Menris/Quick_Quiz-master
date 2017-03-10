@@ -72,13 +72,21 @@ public class Starting extends Activity implements View.OnClickListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_starting);
 
+        //Firebase things
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-
-        btn_manageGroup = (Button) findViewById(R.id.btn_manageGroup);
-        btn_beaconConnect = (Button) findViewById(R.id.btn_beaconConnect);
+        //Entering PIN number
+        pinNumber = (EditText) findViewById(R.id.editText_pin);
+        //button to go to quiz activity with entered PIN
         enterPIN = (Button) findViewById(R.id.btn_enter_pin);
+        //go to Beacon Connection activity
+        btn_beaconConnect = (Button) findViewById(R.id.btn_beaconConnect);
+        //button for teachers allows to give access through beacon to exact group
+        btn_manageGroup = (Button) findViewById(R.id.btn_manageGroup);
+        //textView go to profile
+        tv_profile = (TextView) findViewById(R.id.textView_profile);
 
+        //showing btn_manageGroup button only for teachers
         Query info = databaseReference.child("userInformation").child(user.getUid());
         info.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,14 +103,14 @@ public class Starting extends Activity implements View.OnClickListener {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
+        //initialing colors for background animation
         int color1 = ContextCompat.getColor(this, R.color.red);
         int color2 = ContextCompat.getColor(this, R.color.blue);
         int color3 = ContextCompat.getColor(this, R.color.green);
         int color4 = ContextCompat.getColor(this, R.color.grey);
         int color5 = ContextCompat.getColor(this, R.color.yellow);
 
-
+        //animation start
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), color1, color2, color3, color4, color5);
         colorAnimation.setDuration(10000);
         colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -113,9 +121,6 @@ public class Starting extends Activity implements View.OnClickListener {
         });
         colorAnimation.setRepeatCount(Animation.INFINITE);
         colorAnimation.start();
-
-        tv_profile = (TextView) findViewById(R.id.textView_profile);
-        pinNumber = (EditText) findViewById(R.id.editText_pin);
 
         btn_manageGroup.setOnClickListener(this);
         btn_beaconConnect.setOnClickListener(this);
@@ -132,14 +137,16 @@ public class Starting extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        //on ENTER PIN button click
         if (view == enterPIN) {
+            //bool value for checking PIN correction
             success_pin = false;
+            //checking if PIN exist in database
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
-
+                        //checking equality with PIN numbers
                         if (pinNumber.getText().toString().equals(child.getKey())) {
                             Log.w("MyApp", "WORKING");
                             Log.w("MyPin", pinNumber.getText().toString());
