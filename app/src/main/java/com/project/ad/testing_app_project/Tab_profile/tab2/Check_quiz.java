@@ -27,6 +27,8 @@ import com.project.ad.testing_app_project.Test.Quiz_question;
 
 import java.util.Objects;
 
+import me.grantland.widget.AutofitHelper;
+
 public class Check_quiz extends AppCompatActivity implements View.OnClickListener {
 
     //Firebase values
@@ -45,7 +47,7 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
     //Button to the next question and submit button
     Button next_question, previous_question;
     //TextView for showing numbers of total questions and number of current question (ex. 3/5)
-    TextView QuestionProgressNumber;
+    TextView QuestionProgressNumber, tv_quizTitle;
     //Value of chosen answer
     String myAnswer;
     //Value of correct answer from database
@@ -80,6 +82,7 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
 
         question = (TextView) findViewById(R.id.textView_question);
         QuestionProgressNumber = (TextView) findViewById(R.id.textView_ProgressNumber_result);
+        tv_quizTitle = (TextView) findViewById(R.id.textView_quizTitle);
 
         next_question = (Button) findViewById(R.id.btn_next);
         previous_question = (Button) findViewById(R.id.btn_back);
@@ -88,6 +91,11 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
         textView_answerB = (TextView) findViewById(R.id.tv_answerB);
         textView_answerC = (TextView) findViewById(R.id.tv_answerC);
         textView_answerD = (TextView) findViewById(R.id.tv_answerD);
+
+        /*AutofitHelper.create(textView_answerA);
+        AutofitHelper.create(textView_answerB);
+        AutofitHelper.create(textView_answerC);
+        AutofitHelper.create(textView_answerD);*/
 
         //getting PIN number from "Starting" class
         Bundle extras = getIntent().getExtras();
@@ -109,6 +117,7 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
                 Log.w("I have ", numOfQuestions.toString() + " questions");
                 Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
                 quizTitle = quiz_question.getQuizTitle();
+                tv_quizTitle.setText(quizTitle);
             }
 
             @Override
@@ -139,6 +148,12 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
         textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape));
         textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape));
 
+
+        textView_answerA.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        textView_answerB.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        textView_answerC.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        textView_answerD.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
         if (counter == 1) {
             previous_question.setVisibility(View.GONE);
         } else {
@@ -168,16 +183,24 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
 
                 switch (correct_answer) {
                     case "A":
-                        textView_answerA.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        //textView_answerA.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        textView_answerA.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
+                        textView_answerA.setPadding(20,0,0,0);
                         break;
                     case "B":
-                        textView_answerB.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        //textView_answerB.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        textView_answerB.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
+                        textView_answerB.setPadding(20,0,0,0);
                         break;
                     case "C":
-                        textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        //textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        textView_answerC.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
+                        textView_answerC.setPadding(20,0,0,0);
                         break;
                     case "D":
-                        textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        //textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
+                        textView_answerD.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
+                        textView_answerD.setPadding(20,0,0,0);
                         break;
                 }
 
@@ -203,31 +226,31 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
                 Log.w("My answer", myAnswer);
                 switch (myAnswer) {
                     case "A":
-                        if (Objects.equals(correct_answer, myAnswer)) {
-                            textView_answerA.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_correctanswer));
-                        } else {
-                            textView_answerA.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                        if (!Objects.equals(correct_answer, myAnswer)) {
+                            //textView_answerA.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                            textView_answerA.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                            textView_answerA.setPadding(20,0,0,0);
                         }
                         break;
                     case "B":
-                        if (Objects.equals(correct_answer, myAnswer)) {
-                            textView_answerB.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_correctanswer));
-                        } else {
-                            textView_answerB.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                        if (!Objects.equals(correct_answer, myAnswer)) {
+                            //textView_answerB.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                            textView_answerB.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                            textView_answerB.setPadding(20,0,0,0);
                         }
                         break;
                     case "C":
-                        if (Objects.equals(correct_answer, myAnswer)) {
-                            textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_correctanswer));
-                        } else {
-                            textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                        if (!Objects.equals(correct_answer, myAnswer)) {
+                            //textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                            textView_answerC.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                            textView_answerC.setPadding(20,0,0,0);
                         }
                         break;
                     case "D":
-                        if (Objects.equals(correct_answer, myAnswer)) {
-                            textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_correctanswer));
-                        } else {
-                            textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                        if (!Objects.equals(correct_answer, myAnswer)) {
+                            //textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_red));
+                            textView_answerD.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                            textView_answerD.setPadding(20,0,0,0);
                         }
                         break;
                 }

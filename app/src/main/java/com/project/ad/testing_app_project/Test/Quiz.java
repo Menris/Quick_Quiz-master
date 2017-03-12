@@ -56,6 +56,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     Button next_question;
     //TextView for showing numbers of total questions and number of current question (ex. 3/5)
     TextView QuestionProgressNumber;
+    //Quiz title textview
+    TextView tv_quizTitle;
     //Value of chosen answer
     String myAnswer;
     //Value of correct answer from database
@@ -106,6 +108,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         user = firebaseAuth.getCurrentUser();
 
         question = (TextView) findViewById(R.id.textView_question);
+        tv_quizTitle = (TextView) findViewById(R.id.textView_Title);
         QuestionProgressNumber = (TextView) findViewById(R.id.textView_ProgressNumber);
         radioGroupAB = (RadioGroup) findViewById(R.id.radioGroupAB);
         radioGroupCD = (RadioGroup) findViewById(R.id.radioGroupCD);
@@ -132,6 +135,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 numOfQuestions = (int) dataSnapshot.getChildrenCount() - 2;
                 Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
                 quizTitle = quiz_question.getQuizTitle();
+                tv_quizTitle.setText(quizTitle + " ");
                 teacherID = quiz_question.getTeacherID();
                 getUserInfo();
             }
@@ -188,10 +192,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 QuestionProgressNumber.setText(counter.toString() + "/" + numOfQuestions);
                 Log.e("I have ", numOfQuestions.toString());
                 question.setText(current_Question);
-                ansA.setText(current_answerA);
-                ansB.setText(current_answerB);
-                ansC.setText(current_answerC);
-                ansD.setText(current_answerD);
+                ansA.setText(current_answerA + "");
+                ansB.setText(current_answerB + "");
+                ansC.setText(current_answerC + "");
+                ansD.setText(current_answerD + "");
                 radioGroupAB.clearCheck();
                 radioGroupCD.clearCheck();
 
@@ -221,8 +225,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         if (view == next_question && counter < numOfQuestions) {
             //finish flashing the NEXT button
             view.clearAnimation();
-
+            //adding answer to user profile to
             FirebaseDatabase.getInstance().getReference().child("userInformation").child(user.getUid()).child("myPassedQuizes").child(PIN).child("Question " + counter).setValue(quiz_question_myAnswer);
+            //adding answer to teacher profile for graph data
+            FirebaseDatabase.getInstance().getReference().child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups").child(studentGroup).child("userNames").child(studentName).child("userAnswers").child("Question " + counter).setValue(quiz_question_myAnswer);
             if (check_Radio) {
                 counter++;
                 if (myAnswer.equals(correct_answer)) {
@@ -246,6 +252,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             }
         } else {
             FirebaseDatabase.getInstance().getReference().child("userInformation").child(user.getUid()).child("myPassedQuizes").child(PIN).child("Question " + counter).setValue(quiz_question_myAnswer);
+            //adding answer to teacher profile for graph data
+            FirebaseDatabase.getInstance().getReference().child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups").child(studentGroup).child("userNames").child(studentName).child("userAnswers").child("Question " + counter).setValue(quiz_question_myAnswer);
+
             AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this);
             builder.setTitle("You have finished quiz")
                     .setMessage("Submit your answers to see your mark!")
@@ -268,6 +277,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                                     DatabaseReference quizIDRef = refToTeacherQuizID.child(PIN);
                                     Map<String, Object> quizIDUpdates = new HashMap<String, Object>();
                                     quizIDUpdates.put("quizID", PIN);
+                                    quizIDUpdates.put("quizTitle", quizTitle);
                                     quizIDRef.updateChildren(quizIDUpdates);
 
                                     //adding student result and student information to teachers profile

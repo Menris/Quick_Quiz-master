@@ -35,13 +35,15 @@ public class StudentsResult extends AppCompatActivity {
 
         Query ref = databaseReference.child("userInformation").child(user.getUid()).child("teacherQuizes");
         ListView listView = (ListView) findViewById(R.id.listView_myQuizTitles);
-        final FirebaseListAdapter<Tab2_UserResult> adapter = new FirebaseListAdapter<Tab2_UserResult>(this, Tab2_UserResult.class, android.R.layout.simple_list_item_1, ref) {
+        final FirebaseListAdapter<Tab2_UserResult> adapter = new FirebaseListAdapter<Tab2_UserResult>(this, Tab2_UserResult.class, android.R.layout.simple_list_item_2, ref) {
             @Override
             protected void populateView(View view, Tab2_UserResult person, int position) {
                 //Populate the item
 
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setText(person.getQuizID());
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                text2.setText(person.getQuizTitle());
             }
         };
         listView.setAdapter(adapter);

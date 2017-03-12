@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.project.ad.testing_app_project"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.project.ad.testing_app_project">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -16,6 +16,7 @@
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,7 +38,8 @@
             android:label="@string/title_activity_messages"
             android:theme="@style/AppTheme" />
         <activity android:name=".Tab_profile.tab1.ChatRoom" />
-        <activity android:name=".BeaconConnect"></activity>
+        <activity android:name=".BeaconConnect" />
+        <activity android:name=".Tab_profile.tab1.QuizStatistic"></activity>
     </application>
 
 </manifest>

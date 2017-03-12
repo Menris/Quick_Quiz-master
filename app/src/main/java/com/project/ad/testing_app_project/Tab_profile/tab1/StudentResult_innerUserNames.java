@@ -1,6 +1,8 @@
 package com.project.ad.testing_app_project.Tab_profile.tab1;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +44,18 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
             Log.w("Amir", PIN);
             Log.w("Amir", groupName);
         }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.graph);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuizStatistic.class);
+                intent.putExtra("studentGroup", groupName);
+                intent.putExtra("PIN", PIN);
+                startActivity(intent);
+            }
+        });
 
         Query ref = databaseReference.child("userInformation").child(user.getUid()).child("teacherQuizes").child(PIN).child("groups").child(groupName).child("userNames");
         ListView listView = (ListView) findViewById(R.id.listview_userNamesList);

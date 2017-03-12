@@ -1,6 +1,7 @@
 package com.project.ad.testing_app_project.Tab_profile.tab1;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -92,6 +93,7 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
 
             }
         });
+
 
         myQuizes.setOnClickListener(this);
         myMessages.setOnClickListener(this);

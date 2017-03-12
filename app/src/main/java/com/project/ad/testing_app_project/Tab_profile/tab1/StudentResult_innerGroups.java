@@ -1,6 +1,7 @@
 package com.project.ad.testing_app_project.Tab_profile.tab1;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,9 +13,12 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.R;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 
@@ -24,6 +28,7 @@ public class StudentResult_innerGroups extends AppCompatActivity {
     FirebaseUser user;
     public DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     String PIN;
+    Integer numberOfStudents = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +46,32 @@ public class StudentResult_innerGroups extends AppCompatActivity {
 
         Query ref = databaseReference.child("userInformation").child(user.getUid()).child("teacherQuizes").child(PIN).child("groups");
         ListView listView = (ListView) findViewById(R.id.listview_groupList);
+
+
         FirebaseListAdapter<Quiz_question> adapter = new FirebaseListAdapter<Quiz_question>(this, Quiz_question.class, android.R.layout.simple_list_item_2, ref) {
             @Override
             protected void populateView(View view, Quiz_question person, int position) {
                 //Populate the item
+
+                final TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                DatabaseReference countStudentsRef = databaseReference.child("userInformation").child(user.getUid()).child("teacherQuizes").child(PIN).child("groups").child(person.getGroup()).child("userNames");
+                countStudentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                            Log.e("My students number", dataSnapshot.getChildrenCount() + "");
+                            numberOfStudents = (int) dataSnapshot.getChildrenCount();
+                            text2.setText(numberOfStudents.toString() +  " - number of students passed quiz");
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 Log.w("Groups", person.getGroup());
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 text.setText(person.getGroup());
+
             }
         };
         listView.setAdapter(adapter);

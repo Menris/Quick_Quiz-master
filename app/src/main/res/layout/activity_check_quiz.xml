@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_check_quiz"
     android:layout_width="match_parent"
@@ -7,18 +8,7 @@
     android:background="@color/blue_white"
     android:orientation="vertical"
     android:weightSum="1"
-
     tools:context="com.project.ad.testing_app_project.Tab_profile.tab2.Check_quiz">
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
-    </ScrollView>
 
 
     <LinearLayout
@@ -35,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/buttonshape_navigation"
             android:fontFamily="casual"
             android:shadowColor="#000000"
             android:shadowDx="0"
@@ -52,7 +42,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_weight="0.5"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/buttonshape_navigation"
             android:fontFamily="casual"
             android:shadowColor="#000000"
             android:shadowDx="0"
@@ -82,26 +72,31 @@
             android:layout_alignParentStart="true"
             android:weightSum="1">
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/tv_answerA"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:maxLines="3"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                autofit:minTextSize="8sp" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/tv_answerB"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:maxLines="3"
                 android:text="TextView"
                 android:textAlignment="center"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
 
@@ -116,26 +111,30 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/tv_answerC"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:maxLines="3"
                 android:text="TextView"
                 android:textAlignment="center"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
-            <TextView
+            <me.grantland.widget.AutofitTextView
                 android:id="@+id/tv_answerD"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"
                 android:gravity="center"
+                android:maxLines="3"
                 android:text="TextView"
                 android:textAlignment="center"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
@@ -143,9 +142,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout3"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView_ProgressNumber_result"
-        android:layout_above="@+id/linearLayout3">
+        android:id="@+id/linearLayout5">
 
         <TextView
             android:id="@+id/textView_question"
@@ -153,11 +153,11 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_weight="0.14"
-            android:text="TextView"
             android:background="@drawable/textview_question"
             android:gravity="center"
+            android:text="TextView"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/grey"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -166,10 +166,22 @@
         android:id="@+id/textView_ProgressNumber_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/scrollView2"
         android:text="Questions progress"
         android:textColor="@color/white"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView_quizTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout5"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/textView_ProgressNumber_result"
+        android:text="TextView"
+        android:textColor="@color/cardview_light_background"
         android:textSize="24sp" />
 
 
