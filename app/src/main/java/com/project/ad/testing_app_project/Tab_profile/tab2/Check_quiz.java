@@ -108,22 +108,35 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
 
 
         //counting how many questions we have
+        final DatabaseReference quizInfoRef = databaseReference.child("Tests").child(PIN).child("Questions");
+        quizInfoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.w("I have ", dataSnapshot.getChildrenCount() + " questions");
+                numOfQuestions = (int) dataSnapshot.getChildrenCount();
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+        //quiz info
         DatabaseReference questionCountRef = databaseReference.child("Tests").child(PIN);
 
         questionCountRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                numOfQuestions = (int) dataSnapshot.getChildrenCount() - 2;
-                Log.w("I have ", numOfQuestions.toString() + " questions");
                 Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
                 quizTitle = quiz_question.getQuizTitle();
                 tv_quizTitle.setText(quizTitle);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
         dialog = ProgressDialog.show(Check_quiz.this, "", "Loading...", true);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -160,7 +173,7 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
             previous_question.setVisibility(View.VISIBLE);
         }
 
-        DatabaseReference ref = databaseReference.child("Tests").child(PIN).child("Question " + counter);
+        DatabaseReference ref = databaseReference.child("Tests").child(PIN).child("Questions").child("Question " + counter);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -186,21 +199,25 @@ public class Check_quiz extends AppCompatActivity implements View.OnClickListene
                         //textView_answerA.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
                         textView_answerA.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
                         textView_answerA.setPadding(20,0,0,0);
+                        AutofitHelper.create(textView_answerA);
                         break;
                     case "B":
                         //textView_answerB.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
                         textView_answerB.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
                         textView_answerB.setPadding(20,0,0,0);
+                        AutofitHelper.create(textView_answerB);
                         break;
                     case "C":
                         //textView_answerC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
                         textView_answerC.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
                         textView_answerC.setPadding(20,0,0,0);
+                        AutofitHelper.create(textView_answerC);
                         break;
                     case "D":
                         //textView_answerD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape_green));
                         textView_answerD.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer, 0, 0, 0);
                         textView_answerD.setPadding(20,0,0,0);
+                        AutofitHelper.create(textView_answerD);
                         break;
                 }
 

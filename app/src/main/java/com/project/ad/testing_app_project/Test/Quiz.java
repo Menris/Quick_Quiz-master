@@ -127,16 +127,27 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         }
 
         //counting how many questions we have
-        final DatabaseReference questionCountRef = databaseReference.child("Tests").child(PIN);
-        questionCountRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference quizInfoRef = databaseReference.child("Tests").child(PIN);
+        quizInfoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.w("I have ", dataSnapshot.getChildrenCount() - 2 + " questions");
-                numOfQuestions = (int) dataSnapshot.getChildrenCount() - 2;
                 Quiz_question quiz_question = dataSnapshot.getValue(Quiz_question.class);
                 quizTitle = quiz_question.getQuizTitle();
                 tv_quizTitle.setText(quizTitle + " ");
                 teacherID = quiz_question.getTeacherID();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        //counting how many questions we have
+        final DatabaseReference questionCountRef = databaseReference.child("Tests").child(PIN).child("Questions");
+        questionCountRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.w("I have ", dataSnapshot.getChildrenCount() + " questions");
+                numOfQuestions = (int) dataSnapshot.getChildrenCount();
                 getUserInfo();
             }
             @Override
@@ -174,7 +185,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         ansC.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape));
         ansD.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonshape));
 
-        DatabaseReference ref = databaseReference.child("Tests").child(PIN).child("Question " + counter);
+        DatabaseReference ref = databaseReference.child("Tests").child(PIN).child("Questions").child("Question " + counter);
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
