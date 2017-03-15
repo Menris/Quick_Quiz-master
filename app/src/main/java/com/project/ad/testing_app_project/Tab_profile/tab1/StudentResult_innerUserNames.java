@@ -14,9 +14,12 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.R;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 
@@ -27,7 +30,7 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
     public DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     String PIN;
     String groupName;
-
+    Integer numberOfStudents;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,8 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
             Log.w("Amir", groupName);
         }
 
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.graph);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +58,7 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), QuizStatistic.class);
                 intent.putExtra("studentGroup", groupName);
                 intent.putExtra("PIN", PIN);
+                intent.putExtra("numberOfStudents", numberOfStudents );
                 startActivity(intent);
             }
         });

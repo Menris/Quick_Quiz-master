@@ -77,8 +77,8 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
                 Quiz_question userInfo = dataSnapshot.getValue(Quiz_question.class);
                 role = userInfo.getRole();
 
-                userName.setText(userInfo.getName());
-                userEmail.setText(user.getEmail());
+                userName.setText(userInfo.getName() + " ");
+                userEmail.setText(user.getEmail() + " ");
 
                 if (Objects.equals(role, "teachers")){
                     myQuizes.setVisibility(View.VISIBLE);

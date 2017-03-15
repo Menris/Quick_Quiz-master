@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.Test.Quiz;
+import com.project.ad.testing_app_project.Test.Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 
 import java.util.ArrayList;
@@ -218,7 +219,7 @@ public class BeaconConnect extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Quiz_question userPIN = dataSnapshot.getValue(Quiz_question.class);
-                Intent intent = new Intent(getApplicationContext(), Quiz.class);
+                Intent intent = new Intent(getApplicationContext(), Quiz_multiple.class);
                 intent.putExtra("PIN", userPIN.getQuizID());
                 startActivity(intent);
             }

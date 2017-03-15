@@ -31,6 +31,7 @@ dependencies {
     })
 
     compile 'me.grantland:autofittextview:0.2.1'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0'
     compile 'com.jjoe64:graphview:4.2.1'
     compile 'com.estimote:sdk:0.9.4@aar'
     compile 'com.android.support:appcompat-v7:24.2.1'
@@ -43,6 +44,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     testCompile 'junit:junit:4.12'
 }
+
+
 
 
 

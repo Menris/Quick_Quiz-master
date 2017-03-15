@@ -31,6 +31,7 @@
                 android:layout_below="@+id/textView_userName"
                 android:layout_marginTop="11dp"
                 android:layout_toEndOf="@+id/imageView_userPhoto"
+                android:fontFamily="casual"
                 android:text="TextView"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18sp"
@@ -43,6 +44,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="17dp"
                 android:layout_toEndOf="@+id/imageView_userPhoto"
+                android:fontFamily="casual"
                 android:text="TextView"
                 android:textColor="@color/authui_inputTextColor"
                 android:textSize="18sp"
@@ -63,19 +65,19 @@
                 android:id="@+id/btn_messages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/chat"
-                android:text="Messages"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
+                android:drawableTop="@drawable/chat"
+                android:text="Messages" />
 
             <Button
                 android:id="@+id/btn_myQuizes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/manage"
-                android:text="Manage my quizes"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/btn_messages" />
+                android:layout_toEndOf="@+id/btn_messages"
+                android:drawableTop="@drawable/manage"
+                android:text="Manage my quizes" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

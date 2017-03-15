@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.Tab_profile.My_Profile;
 import com.project.ad.testing_app_project.Tab_profile.tab2.Check_quiz;
 import com.project.ad.testing_app_project.Test.Quiz;
+import com.project.ad.testing_app_project.Test.Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 
 import java.util.ArrayList;
@@ -151,7 +152,7 @@ public class Starting extends Activity implements View.OnClickListener {
                             Log.w("MyApp", "WORKING");
                             Log.w("MyPin", pinNumber.getText().toString());
 
-                            Intent intent = new Intent(getApplicationContext(), Quiz.class);
+                            Intent intent = new Intent(getApplicationContext(), Quiz_multiple.class);
                             intent.putExtra("PIN", pinNumber.getText().toString());
                             startActivity(intent);
                             success_pin = true;

@@ -79,7 +79,7 @@ public class Tab2_overview extends Fragment {
                 Tab2_UserResult item = (Tab2_UserResult) adapterView.getItemAtPosition(i);
                 String pin = item.getQuizID();
                 numberOfCorrectAnswers = item.getUserResult();
-                final Intent intent = new Intent(getActivity(),Check_quiz.class);
+                final Intent intent = new Intent(getActivity(),Check_Quiz_multiple.class);
                 intent.putExtra("PIN_result", pin );
                 intent.putExtra("userResult", numberOfCorrectAnswers);
                 startActivity(intent);

@@ -25,6 +25,7 @@ public class QuizStatistic_list {
     private String correctAnswer;
     private String questionNumber;
 
+
     public QuizStatistic_list ( String quizTitle, String quizQuestion, String answerA, String answerB, String answerC, String answerD) {
 
         this.quizTitle = quizTitle;

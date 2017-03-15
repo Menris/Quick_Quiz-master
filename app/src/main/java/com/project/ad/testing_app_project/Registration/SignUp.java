@@ -221,7 +221,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         } else {
             inputLayoutPassword.setErrorEnabled(false);
         }
-
         return true;
     }
 

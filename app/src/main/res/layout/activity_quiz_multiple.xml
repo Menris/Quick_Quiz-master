@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_white"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.project.ad.testing_app_project.Test.Quiz_multiple">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/textView_quizTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:fontFamily="casual"
+            android:text="Title"
+            android:textAlignment="center"
+            android:textColor="@color/authui_inputTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_numberOfQuestions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:fontFamily="casual"
+            android:text="Qnumber"
+            android:textAlignment="textEnd"
+            android:textColor="@color/authui_inputTextColor"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.7"
+        android:background="@drawable/textview_question"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:text="Question"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/listView_answers"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="0.25"
+        style="@style/scrollbar_shape_style"
+        android:paddingRight="10dp">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/button_nextQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.01"
+        android:background="@drawable/buttonshape_navigation"
+        android:fontFamily="casual"
+        android:text="Next Question"
+        android:textColor="@color/authui_inputTextColor"
+        android:textSize="22sp" />
+</LinearLayout>

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.ad.testing_app_project.Tab_profile.tab1.QuizStatistic">
+    tools:context="com.project.ad.testing_app_project.Tab_profile.tab2.Check_Quiz_multiple">
 
     <TextView
         android:id="@+id/textView_quizTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue_white"
+        android:background="@color/authui_colorPrimaryDark"
         android:fontFamily="casual"
-        android:text="Hello"
+        android:text="Title"
         android:textAlignment="center"
         android:textColor="@color/authui_inputTextColor"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
+
     <ListView
-        android:id="@+id/listView_quizStatistic"
+        android:id="@+id/listView_checkQuiz"
+        style="@style/scrollbar_shape_style"
+        android:paddingRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/scrollbar_shape_style"
-        android:paddingRight="10dp">
-
-    </ListView>
-
-
+         />
 </LinearLayout>

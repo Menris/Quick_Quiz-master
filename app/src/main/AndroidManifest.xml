@@ -39,7 +39,9 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Tab_profile.tab1.ChatRoom" />
         <activity android:name=".BeaconConnect" />
-        <activity android:name=".Tab_profile.tab1.QuizStatistic"></activity>
+        <activity android:name=".Tab_profile.tab1.QuizStatistic" />
+        <activity android:name=".Test.Quiz_multiple" />
+        <activity android:name=".Tab_profile.tab2.Check_Quiz_multiple"></activity>
     </application>
 
 </manifest>
