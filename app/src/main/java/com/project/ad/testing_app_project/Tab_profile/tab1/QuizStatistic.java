@@ -2,32 +2,17 @@ package com.project.ad.testing_app_project.Tab_profile.tab1;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,23 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.ValueDependentColor;
-import com.jjoe64.graphview.series.BarGraphSeries;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 import com.project.ad.testing_app_project.R;
-import com.project.ad.testing_app_project.Tab_profile.tab2.Check_quiz;
-import com.project.ad.testing_app_project.Test.Quiz_multiple;
+import com.project.ad.testing_app_project.Tab_profile.My_Profile;
+import com.project.ad.testing_app_project.Tab_profile.tab2.Check_Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_multiple_adapter;
-import com.project.ad.testing_app_project.Test.Quiz_question;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class QuizStatistic extends AppCompatActivity {
@@ -87,7 +61,6 @@ public class QuizStatistic extends AppCompatActivity {
             Log.w("Amir", groupName);
         }
 
-
         Query questionCountRef = databaseReference.child("Tests").child(PIN);
         questionCountRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -97,27 +70,31 @@ public class QuizStatistic extends AppCompatActivity {
                 quizTitle.setText(quizTitle_text + " ");
                 teacherID = title.getTeacherID();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
 
-        populateListView();
+
+                populateListView();
+
+
+
 
 
     }
 
-
     private void populateListView() {
 
+        final ProgressDialog dialog;
+        dialog = ProgressDialog.show(QuizStatistic.this, "", "Loading...", true);
 
         final Integer counter = 1;
         final ListView questionsList = (ListView) findViewById(R.id.listView_quizStatistic);
         final Character[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         DatabaseReference myQuery = databaseReference.child("Tests").child(PIN).child("Questions");
 
-        final FirebaseListAdapter<QuizStatistic_list> adapter = new FirebaseListAdapter<QuizStatistic_list>(this, QuizStatistic_list.class, R.layout.list_quiz_statistic, myQuery) {
+        FirebaseListAdapter<QuizStatistic_list> adapter = new FirebaseListAdapter<QuizStatistic_list>(this, QuizStatistic_list.class, R.layout.list_quiz_statistic, myQuery) {
             @Override
             protected void populateView(View v, final QuizStatistic_list model, final int position) {
 
@@ -127,6 +104,19 @@ public class QuizStatistic extends AppCompatActivity {
 
                 quizQuestion = (TextView) v.findViewById(R.id.textView_quizQuestion);
                 questionNumber = (TextView) v.findViewById(R.id.textView_questionNumber);
+
+                layoutE = (LinearLayout) v.findViewById(R.id.layoutE);
+                layoutF = (LinearLayout) v.findViewById(R.id.layoutF);
+                layoutG = (LinearLayout) v.findViewById(R.id.layoutG);
+                layoutH = (LinearLayout) v.findViewById(R.id.layoutH);
+                layoutI = (LinearLayout) v.findViewById(R.id.layoutI);
+                layoutJ = (LinearLayout) v.findViewById(R.id.layoutJ);
+                layoutE.setVisibility(View.VISIBLE);
+                layoutF.setVisibility(View.VISIBLE);
+                layoutG.setVisibility(View.VISIBLE);
+                layoutH.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.VISIBLE);
+                layoutJ.setVisibility(View.VISIBLE);
 
                 ansA = (TextView) v.findViewById(R.id.textView_ansA);
                 ansB = (TextView) v.findViewById(R.id.textView_ansB);
@@ -150,19 +140,8 @@ public class QuizStatistic extends AppCompatActivity {
                 statI = (TextView) v.findViewById(R.id.statI);
                 statJ = (TextView) v.findViewById(R.id.statJ);
 
-                layoutE = (LinearLayout) v.findViewById(R.id.layoutE);
-                layoutF = (LinearLayout) v.findViewById(R.id.layoutF);
-                layoutG = (LinearLayout) v.findViewById(R.id.layoutG);
-                layoutH = (LinearLayout) v.findViewById(R.id.layoutH);
-                layoutI = (LinearLayout) v.findViewById(R.id.layoutI);
-                layoutJ = (LinearLayout) v.findViewById(R.id.layoutJ);
 
-                layoutE.setVisibility(View.VISIBLE);
-                layoutF.setVisibility(View.VISIBLE);
-                layoutG.setVisibility(View.VISIBLE);
-                layoutH.setVisibility(View.VISIBLE);
-                layoutI.setVisibility(View.VISIBLE);
-                layoutJ.setVisibility(View.VISIBLE);
+
 
                 quizQuestion.setText(model.getQuestion());
                 questionNumber.setText(model.getQuestionNumber());
@@ -186,93 +165,100 @@ public class QuizStatistic extends AppCompatActivity {
                         ansI.setText("I: " + adapter.getAnswer('I'));
                         ansJ.setText("J: " + adapter.getAnswer('J'));
 
-                        final DatabaseReference questionStatRef  = databaseReference.child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups").child(groupName).child("userAnswers").child("Question " + model.getQuestionNumber());
-                        questionStatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
                             @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
+                            public void run() {
+                                //showing first question on activity
+                                DatabaseReference questionStatRef  = databaseReference.child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups").child(groupName).child("userAnswers").child("Question " + model.getQuestionNumber());
+                                questionStatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                Quiz_multiple_adapter adapter = dataSnapshot.getValue(Quiz_multiple_adapter.class);
+                                        Quiz_multiple_adapter adapter = dataSnapshot.getValue(Quiz_multiple_adapter.class);
 
-                                Integer intA = 0;
-                                Integer intB = 0;
-                                Integer intC = 0;
-                                Integer intD = 0;
-                                Integer intE = 0;
-                                Integer intF = 0;
-                                Integer intG = 0;
-                                Integer intH = 0;
-                                Integer intI = 0;
-                                Integer intJ = 0;
+                                        Integer intA = 0;
+                                        Integer intB = 0;
+                                        Integer intC = 0;
+                                        Integer intD = 0;
+                                        Integer intE = 0;
+                                        Integer intF = 0;
+                                        Integer intG = 0;
+                                        Integer intH = 0;
+                                        Integer intI = 0;
+                                        Integer intJ = 0;
 
-                                String questionAnswersArray = adapter.getMyAnswer();
+                                        String questionAnswersArray = adapter.getMyAnswer();
 
-                                String[] array = questionAnswersArray.split("");
+                                        String[] array = questionAnswersArray.split("");
 
-                                for (int i = 0; i < array.length; i++) {
-                                    Log.e("arrayLength", array.length + "");
-                                    if (Objects.equals(array[i], "A")) {
-                                        intA++;
+                                        for (int i = 0; i < array.length; i++) {
+                                            Log.e("arrayLength", array.length + "");
+                                            if (Objects.equals(array[i], "A")) {
+                                                intA++;
+                                            }
+                                            if (Objects.equals(array[i], "B")) {
+                                                intB++;
+                                            }
+                                            if (Objects.equals(array[i], "C")) {
+                                                intC++;
+                                            }
+                                            if (Objects.equals(array[i], "D")) {
+                                                intD++;
+                                            }
+                                            if (Objects.equals(array[i], "E")) {
+                                                intE++;
+                                            }
+                                            if (Objects.equals(array[i], "F")) {
+                                                intF++;
+                                            }
+                                            if (Objects.equals(array[i], "G")) {
+                                                intG++;
+                                            }
+                                            if (Objects.equals(array[i], "H")) {
+                                                intH++;
+                                            }
+                                            if (Objects.equals(array[i], "I")) {
+                                                intI++;
+                                            }
+                                            if (Objects.equals(array[i], "J")) {
+                                                intJ++;
+                                            }
+                                        }
+
+                                        double resultA = (double)intA / (array.length - 1) * 100;
+                                        double resultB = (double)intB / (array.length - 1) * 100;
+                                        double resultC = (double)intC / (array.length - 1) * 100;
+                                        double resultD = (double)intD / (array.length - 1) * 100;
+                                        double resultE = (double)intE / (array.length - 1) * 100;
+                                        double resultF = (double)intF / (array.length - 1) * 100;
+                                        double resultG = (double)intG / (array.length - 1) * 100;
+                                        double resultH = (double)intH / (array.length - 1) * 100;
+                                        double resultI = (double)intI / (array.length - 1) * 100;
+                                        double resultJ = (double)intJ / (array.length - 1) * 100;
+
+
+
+                                        statA.setText(new DecimalFormat("##.##").format(resultA) + "%");
+                                        statB.setText(new DecimalFormat("##.##").format(resultB) + "%");
+                                        statC.setText(new DecimalFormat("##.##").format(resultC) + "%");
+                                        statD.setText(new DecimalFormat("##.##").format(resultD) + "%");
+                                        statE.setText(new DecimalFormat("##.##").format(resultE) + "%");
+                                        statF.setText(new DecimalFormat("##.##").format(resultF) + "%");
+                                        statG.setText(new DecimalFormat("##.##").format(resultG) + "%");
+                                        statH.setText(new DecimalFormat("##.##").format(resultH) + "%");
+                                        statI.setText(new DecimalFormat("##.##").format(resultI) + "%");
+                                        statJ.setText(new DecimalFormat("##.##").format(resultJ) + "%");
+
+                                        Log.e("myAnswersArray", questionAnswersArray);
                                     }
-                                    if (Objects.equals(array[i], "B")) {
-                                        intB++;
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
                                     }
-                                    if (Objects.equals(array[i], "C")) {
-                                        intC++;
-                                    }
-                                    if (Objects.equals(array[i], "D")) {
-                                        intD++;
-                                    }
-                                    if (Objects.equals(array[i], "E")) {
-                                        intE++;
-                                    }
-                                    if (Objects.equals(array[i], "F")) {
-                                        intF++;
-                                    }
-                                    if (Objects.equals(array[i], "G")) {
-                                        intG++;
-                                    }
-                                    if (Objects.equals(array[i], "H")) {
-                                        intH++;
-                                    }
-                                    if (Objects.equals(array[i], "I")) {
-                                        intI++;
-                                    }
-                                    if (Objects.equals(array[i], "J")) {
-                                        intJ++;
-                                    }
-                                }
-
-                                double resultA = (double)intA / (array.length - 1) * 100;
-                                double resultB = (double)intB / (array.length - 1) * 100;
-                                double resultC = (double)intC / (array.length - 1) * 100;
-                                double resultD = (double)intD / (array.length - 1) * 100;
-                                double resultE = (double)intE / (array.length - 1) * 100;
-                                double resultF = (double)intF / (array.length - 1) * 100;
-                                double resultG = (double)intG / (array.length - 1) * 100;
-                                double resultH = (double)intH / (array.length - 1) * 100;
-                                double resultI = (double)intI / (array.length - 1) * 100;
-                                double resultJ = (double)intJ / (array.length - 1) * 100;
-
-
-
-                                statA.setText(new DecimalFormat("##.##").format(resultA) + "%");
-                                statB.setText(new DecimalFormat("##.##").format(resultB) + "%");
-                                statC.setText(new DecimalFormat("##.##").format(resultC) + "%");
-                                statD.setText(new DecimalFormat("##.##").format(resultD) + "%");
-                                statE.setText(new DecimalFormat("##.##").format(resultE) + "%");
-                                statF.setText(new DecimalFormat("##.##").format(resultF) + "%");
-                                statG.setText(new DecimalFormat("##.##").format(resultG) + "%");
-                                statH.setText(new DecimalFormat("##.##").format(resultH) + "%");
-                                statI.setText(new DecimalFormat("##.##").format(resultI) + "%");
-                                statJ.setText(new DecimalFormat("##.##").format(resultJ) + "%");
-
-                                Log.e("myAnswersArray", questionAnswersArray);
-
+                                });
+                                dialog.dismiss();
                             }
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                            }
-                        });
+                        }, 1000);
 
                         if (adapter.getAnswer('E') == null) {
                             layoutE.setVisibility(View.GONE);
@@ -435,9 +421,6 @@ public class QuizStatistic extends AppCompatActivity {
 
 
                // addPieChart();
-
-
-
             }
         };
         questionsList.setAdapter(adapter);

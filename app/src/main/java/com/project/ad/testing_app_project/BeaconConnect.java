@@ -2,7 +2,6 @@ package com.project.ad.testing_app_project;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.project.ad.testing_app_project.Test.Quiz;
 import com.project.ad.testing_app_project.Test.Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 

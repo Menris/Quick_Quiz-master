@@ -214,8 +214,8 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
 
             for (int i = 0; i < myAnswersArray.size(); i++) {
                 FirebaseDatabase.getInstance().getReference().child("userInformation").child(user.getUid()).child("myPassedQuizes").child(PIN).child("Question " + (i + 1)).child("myAnswer").setValue(myAnswersArray.get(i));
+                Log.e("myAnswer" , myAnswersArray.get(i));
             }
-
             //adding answer to teacher profile for graph data
             addAnswersArray();
 
@@ -282,6 +282,8 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
 
         for (int i = 0; i < myAnswersArray.size(); i++) {
 
+            final Integer index = i;
+
             final DatabaseReference questionStatRef = databaseReference.child("userInformation").child(teacherID).child("teacherQuizes").child(PIN).child("groups").child(studentGroup).child("userAnswers").child("Question " + (i + 1));
             questionStatRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -290,13 +292,12 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
                     Quiz_multiple_adapter adapter = dataSnapshot.getValue(Quiz_multiple_adapter.class);
 
                     if (!dataSnapshot.child("myAnswer").exists()) {
-                        questionStatRef.child("myAnswer").setValue(myAnswer);
+                        questionStatRef.child("myAnswer").setValue(myAnswersArray.get(index));
                     } else {
                         String questionAnswersArray = adapter.getMyAnswer();
-                        questionStatRef.child("myAnswer").setValue(questionAnswersArray + myAnswer);
+                        questionStatRef.child("myAnswer").setValue(questionAnswersArray + myAnswersArray.get(index));
                     }
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                 }

@@ -19,7 +19,9 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.project.ad.testing_app_project.Registration.MainActivity;
 import com.project.ad.testing_app_project.R;
+import com.project.ad.testing_app_project.Starting;
 import com.project.ad.testing_app_project.Tab_profile.Tab3_materials;
+import com.project.ad.testing_app_project.Tab_profile.tab1.Messages;
 import com.project.ad.testing_app_project.Tab_profile.tab1.Tab1_profile;
 import com.project.ad.testing_app_project.Tab_profile.tab2.Tab2_overview;
 
@@ -65,8 +67,8 @@ public class My_Profile extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), Starting.class);
+                startActivity(intent);
             }
         });
 

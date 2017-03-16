@@ -30,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.project.ad.testing_app_project.R;
 import com.project.ad.testing_app_project.Starting;
 
+import java.util.Objects;
+
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth firebaseAuth;
@@ -37,7 +39,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference databaseReference;
     private Toolbar toolbar;
     //edit text fields for inputing information
-    private EditText inputName, inputEmail, inputPassword ,inputGroup;
+    private EditText inputName, inputEmail, inputPassword, inputGroup;
     //layout for wrong input (showing error text)
     private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPassword, inputLayoutGroup, inputLayoutRadio;
     //button for registration current user
@@ -46,7 +48,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private RadioButton radioButton_studnent, radioButton_teacher;
     private RadioGroup radioGroup;
     String Name, Email, Password;
-    private String group, groupName;
+    private String role, groupName;
     private Integer radioID = -1;
     //check if its needed to enter group name for student or teacher
     private Boolean validateGroupName = true;
@@ -137,19 +139,21 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
+                            saveUserInformation();
+
                             //user is succesfully registered and logged in
                             final Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    saveUserInformation();
+                                    Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), Starting.class));
+                                    //start the profile activity here
                                 }
-                            },1000);
+                            }, 1000);
 
-                            finish();
-                            Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Starting.class));
-                            //start the profile activity here
+
                         } else {
                             Toast.makeText(SignUp.this, "FAIL, try again", Toast.LENGTH_SHORT).show();
                         }
@@ -164,27 +168,25 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         //Getting values from database
 
 
-
         //creating a userinformation object
         SignUp_userInfo userInformation = new SignUp_userInfo();
 
         userInformation.setName(Name);
-        userInformation.setRole(group);
+        userInformation.setRole(role);
         userInformation.setEmail(Email);
         userInformation.setGroup(groupName);
 
         //getting the current logged in user
         user = firebaseAuth.getCurrentUser();
-        if (group == "students"){
-            Log.w("Amir","user is student");
+        if (Objects.equals(role, "students")) {
+            Log.w("Amir", "user is student");
+            databaseReference.child("userInformation").child(user.getUid()).setValue(userInformation);
+        } else if (Objects.equals(role, "teachers")) {
+            userInformation.setGroup("teachers");
             databaseReference.child("userInformation").child(user.getUid()).setValue(userInformation);
         }
-        else if (group == "teachers") {
-            databaseReference.child("userInformation").child(user.getUid()).setValue(userInformation);
-            //displaying a success toast
-            Toast.makeText(this, "Information Saved...", Toast.LENGTH_LONG).show();
-        }
-
+        //displaying a success toast
+        Toast.makeText(this, "Information Saved...", Toast.LENGTH_LONG).show();
     }
 
 
@@ -236,6 +238,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         return true;
     }
+
     private boolean validateRadio() {
         if (radioID == -1) {
             inputLayoutRadio.setError("Choose your role");
@@ -309,25 +312,24 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
         // Check which radio button was clicked
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.student_radio:
                 if (checked) {
                     //groupNumber.setVisibility(View.VISIBLE);
                     //check if user going to join student database
-                    Log.w("Amir"," ===  students");
-                    group = "students";
+                    Log.w("Amir", " ===  students");
+                    role = "students";
                     inputGroup.setVisibility(View.VISIBLE);
                     radioID = 1;
                     validateGroupName = true;
-
                     break;
                 }
             case R.id.teacher_radio:
                 if (checked) {
                     // groupNumber.setVisibility(View.GONE);
                     //check if user going to join teacher database
-                    Log.w("Amir"," ===  teachers");
-                    group = "teachers";
+                    Log.w("Amir", " ===  teachers");
+                    role = "teachers";
                     radioID = 1;
                     inputGroup.setVisibility(View.GONE);
                     validateGroupName = false;

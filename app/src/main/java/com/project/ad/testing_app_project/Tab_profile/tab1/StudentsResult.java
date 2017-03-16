@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.project.ad.testing_app_project.R;
-import com.project.ad.testing_app_project.Tab_profile.tab2.Check_quiz;
 import com.project.ad.testing_app_project.Tab_profile.tab2.Tab2_UserResult;
 
 public class StudentsResult extends AppCompatActivity {

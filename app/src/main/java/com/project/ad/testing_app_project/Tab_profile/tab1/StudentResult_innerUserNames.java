@@ -31,6 +31,7 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
     String PIN;
     String groupName;
     Integer numberOfStudents;
+    TextView quizPIN, userGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,31 +40,38 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+        quizPIN = (TextView) findViewById(R.id.innerPIN);
+        userGroup = (TextView) findViewById(R.id.innerGroup);
+
         //getting PIN number from "Starting" class
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             PIN = extras.getString("PIN_result");
             groupName = extras.getString("Group_result");
             Log.w("Amir", PIN);
+            quizPIN.setText(PIN);
             Log.w("Amir", groupName);
+            userGroup.setText(groupName);
         }
 
-
+        PIN = quizPIN.getText().toString();
+        groupName = userGroup.getText().toString();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.graph);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getApplicationContext(), QuizStatistic.class);
                 intent.putExtra("studentGroup", groupName);
                 intent.putExtra("PIN", PIN);
-                intent.putExtra("numberOfStudents", numberOfStudents );
+                //intent.putExtra("numberOfStudents", numberOfStudents);
                 startActivity(intent);
             }
         });
 
-        Query ref = databaseReference.child("userInformation").child(user.getUid()).child("teacherQuizes").child(PIN).child("groups").child(groupName).child("userNames");
+        DatabaseReference ref = databaseReference.child("userInformation").child(user.getUid()).child("teacherQuizes").child(PIN).child("groups").child(groupName).child("userNames");
         ListView listView = (ListView) findViewById(R.id.listview_userNamesList);
         FirebaseListAdapter<Quiz_question> adapter = new FirebaseListAdapter<Quiz_question>(this, Quiz_question.class, android.R.layout.simple_list_item_2, ref) {
             @Override
@@ -77,17 +85,7 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
             }
         };
         listView.setAdapter(adapter);
-
-       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Quiz_question item = (Quiz_question) adapterView.getItemAtPosition(i);
-                String pin = item.getGroup();
-                final Intent intent = new Intent(getApplicationContext(),StudentResult_innerUserNames.class);
-                intent.putExtra("Group_result", pin );
-                startActivity(intent);
-            }
-        });*/
+        listView.setEnabled(false);
 
     }
 

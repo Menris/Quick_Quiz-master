@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.project.ad.testing_app_project.HomeActivity;
 import com.project.ad.testing_app_project.R;
 import com.project.ad.testing_app_project.Registration.SignUp;
 import com.project.ad.testing_app_project.Starting;
@@ -40,11 +41,6 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() != null) {
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(), Starting.class));
-        }
 
         progressDialog = new ProgressDialog(this);
 

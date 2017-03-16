@@ -58,6 +58,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="A"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -74,7 +75,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="B" />
+            android:text="B"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansB"
@@ -84,6 +86,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="B"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -101,7 +104,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="C" />
+            android:text="C"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansC"
@@ -111,6 +115,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="C"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -127,7 +132,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="D" />
+            android:text="D"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansD"
@@ -137,6 +143,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="D"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -154,7 +161,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="E" />
+            android:text="E"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansE"
@@ -164,6 +172,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="E"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -181,7 +190,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="F" />
+            android:text="F"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansF"
@@ -191,6 +201,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="F"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -208,7 +219,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="G" />
+            android:text="G"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansG"
@@ -218,6 +230,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="G"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -235,7 +248,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="H" />
+            android:text="H"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansH"
@@ -245,6 +259,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="H"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -262,7 +277,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="I" />
+            android:text="I"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansI"
@@ -272,6 +288,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="I"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -289,7 +306,8 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="J" />
+            android:text="J"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView_ansJ"
@@ -299,6 +317,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="J"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>

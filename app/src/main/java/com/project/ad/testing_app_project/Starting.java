@@ -3,11 +3,10 @@ package com.project.ad.testing_app_project;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -21,12 +20,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.estimote.sdk.Beacon;
-import com.estimote.sdk.BeaconManager;
-import com.estimote.sdk.Nearable;
-import com.estimote.sdk.Region;
-import com.estimote.sdk.SystemRequirementsChecker;
-import com.estimote.sdk.Utils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,26 +30,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.project.ad.testing_app_project.Registration.MainActivity;
 import com.project.ad.testing_app_project.Tab_profile.My_Profile;
-import com.project.ad.testing_app_project.Tab_profile.tab2.Check_quiz;
-import com.project.ad.testing_app_project.Test.Quiz;
 import com.project.ad.testing_app_project.Test.Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Starting extends Activity implements View.OnClickListener {
 
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     DatabaseReference ref = databaseReference.child("Tests");
     public FirebaseAuth firebaseAuth;
-    FirebaseUser user;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     TextView tv_profile;
     Button enterPIN;
@@ -73,9 +61,16 @@ public class Starting extends Activity implements View.OnClickListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_starting);
 
+
+        if (user != null) {
+           Log.e("user is signed in", " ");
+        } else {
+            //profile activity here
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        }
+
         //Firebase things
         firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
         //Entering PIN number
         pinNumber = (EditText) findViewById(R.id.editText_pin);
         //button to go to quiz activity with entered PIN

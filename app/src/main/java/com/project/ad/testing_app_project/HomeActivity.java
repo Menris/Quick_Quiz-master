@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.project.ad.testing_app_project.Registration.MainActivity;
 
 import java.util.Timer;
@@ -16,13 +18,14 @@ public class HomeActivity extends Activity {
     // Set Duration of the Splash Screen
     long Delay = 1500;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Remove the Title Bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Get the view from splash_screen.xml
         setContentView(R.layout.activity_home);
@@ -35,12 +38,19 @@ public class HomeActivity extends Activity {
             @Override
             public void run() {
                 // Close SplashScreenActivity.class
-                finish();
 
-                // Start MainActivity.class
-                Intent myIntent = new Intent(HomeActivity.this,
-                        MainActivity.class);
-                startActivity(myIntent);
+                if (user != null) {
+                    finish();
+                    // Start MainActivity.class
+                    Intent myIntent = new Intent(HomeActivity.this, Starting.class);
+                    startActivity(myIntent);
+                } else {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }
+
+
+
             }
         };
 

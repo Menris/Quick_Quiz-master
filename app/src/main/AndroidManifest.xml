@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.project.ad.testing_app_project">
+    package="com.project.ad.testing_app_project"
+    android:versionCode="2">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -27,9 +28,7 @@
             android:name=".Tab_profile.My_Profile"
             android:label="@string/title_activity_my__profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Test.Quiz" />
         <activity android:name=".Test.Result" />
-        <activity android:name=".Tab_profile.tab2.Check_quiz" />
         <activity android:name=".Tab_profile.tab1.StudentsResult" />
         <activity android:name=".Tab_profile.tab1.StudentResult_innerGroups" />
         <activity android:name=".Tab_profile.tab1.StudentResult_innerUserNames" />
