@@ -7,7 +7,7 @@
     tools:context="com.project.ad.testing_app_project.HomeActivity"
     android:orientation="vertical"
     android:paddingTop="50dp"
-    android:background="@color/black_overlay"
+    android:background="@drawable/backgroundimage3"
     >
 <ImageView
     android:layout_gravity="center"
@@ -22,7 +22,12 @@
         android:weightSum="1">
     <ProgressBar
         android:layout_width="wrap_content"
-        android:layout_height="94dp"
+        android:layout_height="match_parent"
+        android:maxHeight="100dip"
+        android:minHeight="100dip"
+        android:indeterminateTint="@color/blue_white"
+        android:minWidth="100dip"
+        android:maxWidth="100dip"
         android:layout_gravity="center"
         android:layout_weight="0.12"/>
     </LinearLayout>

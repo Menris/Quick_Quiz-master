@@ -19,7 +19,7 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.project.ad.testing_app_project",
-            "certificate_hash": "8FF4E910E1BEA2246E3DF7FA38BCEEFBC972520F"
+            "certificate_hash": "8ff4e910e1bea2246e3df7fa38bceefbc972520f"
           }
         },
         {
@@ -42,6 +42,13 @@
             {
               "client_id": "358517152444-f9ic8tn3lcarfpba9as7v7sohs7l8qml.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "358517152444-ff9v1bpmqtdbibosrnvaob8t9vaqat0m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ad.QuickQuiz-ObjC"
+              }
             }
           ]
         },

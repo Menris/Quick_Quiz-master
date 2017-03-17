@@ -1,8 +1,11 @@
 package com.project.ad.testing_app_project.Tab_profile.tab1;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.R;
+import com.project.ad.testing_app_project.Tab_profile.tab2.Check_Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_question;
 
 import java.util.Objects;
@@ -68,6 +72,10 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
         myMessages = (Button) getActivity().findViewById(R.id.btn_messages);
         userName = (TextView) getActivity().findViewById(R.id.textView_userName);
         userEmail = (TextView) getActivity().findViewById(R.id.textView_userEmail);
+        myQuizes.setVisibility(View.GONE);
+
+        final ProgressDialog dialog;
+        dialog = ProgressDialog.show(getActivity(), "", "Loading...", true);
 
         DatabaseReference questionCountRef = databaseReference.child("userInformation").child(user.getUid());
 
@@ -85,6 +93,14 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
                 } else {
                     myQuizes.setVisibility(View.GONE);
                 }
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                    }
+                }, 500);
 
             }
 

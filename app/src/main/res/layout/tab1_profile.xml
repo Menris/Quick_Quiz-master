@@ -1,73 +1,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fnBtn="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context="com.project.ad.testing_app_project.Tab_profile.My_Profile$PlaceholderFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_white">
+        android:layout_height="match_parent"
+        android:layout_weight="0.8"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView_userPhoto"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
-
-            <TextView
-                android:id="@+id/textView_userEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView_userName"
-                android:layout_marginTop="11dp"
-                android:layout_toEndOf="@+id/imageView_userPhoto"
-                android:fontFamily="casual"
-                android:text="TextView"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView_userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="17dp"
-                android:layout_toEndOf="@+id/imageView_userPhoto"
+                android:layout_centerHorizontal="true"
                 android:fontFamily="casual"
                 android:text="TextView"
                 android:textColor="@color/authui_inputTextColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView_userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/textView_userName"
+                android:fontFamily="casual"
+                android:text="TextView"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_shadow_start_color">
+        android:layout_weight="0.2"
+        >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btn_messages"
-                android:layout_width="wrap_content"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:drawableTop="@drawable/chat"
+                android:drawableLeft="@drawable/chat"
+                android:paddingTop="10dp"
+                android:elevation="20dp"
                 android:text="Messages" />
 
             <Button
@@ -76,8 +75,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/btn_messages"
-                android:drawableTop="@drawable/manage"
+                android:drawableLeft="@drawable/manage"
+                android:elevation="20dp"
                 android:text="Manage my quizes" />
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -43,7 +43,6 @@ public class Check_Quiz_multiple extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check__quiz_multiple);
 
-
         quizTitle = (TextView) findViewById(R.id.textView_quizTitle);
 
         //getting PIN number from "Starting" class
@@ -51,10 +50,6 @@ public class Check_Quiz_multiple extends AppCompatActivity {
         if (extras != null) {
             PIN = extras.getString("PIN_result");
         }
-
-
-
-
 
 
         Query questionCountRef = databaseReference.child("Tests").child(PIN);
@@ -203,6 +198,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
 
                 if (Objects.equals(correctAnswer, "A")) {
                     statA.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statA.setPadding(30,0,0,0);
                     statB.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statC.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statD.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -216,6 +212,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                 if (Objects.equals(correctAnswer, "B")) {
                     statA.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statB.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statB.setPadding(30,0,0,0);
                     statC.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statD.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statE.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -229,6 +226,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statA.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statB.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statC.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statC.setPadding(30,0,0,0);
                     statD.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statE.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statF.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -242,6 +240,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statB.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statC.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statD.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statD.setPadding(30,0,0,0);
                     statE.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statF.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statG.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -255,6 +254,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statC.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statD.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statE.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statE.setPadding(30,0,0,0);
                     statF.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statG.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statH.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -268,6 +268,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statD.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statE.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statF.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statF.setPadding(30,0,0,0);
                     statG.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statH.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statI.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -281,6 +282,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statE.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statF.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statG.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statG.setPadding(30,0,0,0);
                     statH.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statI.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statJ.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -294,6 +296,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statF.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statG.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statH.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statH.setPadding(30,0,0,0);
                     statI.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statJ.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
@@ -307,6 +310,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statG.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statH.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statI.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statI.setPadding(30,0,0,0);
                     statJ.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
                 if (Objects.equals(correctAnswer, "J")) {
@@ -320,6 +324,7 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                     statH.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statI.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     statJ.setCompoundDrawablesWithIntrinsicBounds(R.drawable.correct_answer_small, 0, 0, 0);
+                    statJ.setPadding(30,0,0,0);
                 }
 
 
@@ -334,51 +339,61 @@ public class Check_Quiz_multiple extends AppCompatActivity {
                             case "A":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statA.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statA.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "B":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statB.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statB.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "C":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statC.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statC.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "D":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statD.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statD.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "E":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statE.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statE.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "F":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statF.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statF.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "G":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statG.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statG.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "H":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statH.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statH.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "I":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statI.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statI.setPadding(30,0,0,0);
                                 }
                                 break;
                             case "J":
                                 if (!Objects.equals(correctAnswer, myAnswer)) {
                                     statJ.setCompoundDrawablesWithIntrinsicBounds(R.drawable.mistake, 0, 0, 0);
+                                    statJ.setPadding(30,0,0,0);
                                 }
                                 break;
                             default:

@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -26,7 +26,7 @@
         <TextView
             android:id="@+id/textView_quizQuestion"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/edittext"
             android:gravity="center"
@@ -38,7 +38,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -48,24 +48,24 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="A" />
+            android:text="" />
 
         <TextView
             android:id="@+id/textView_ansA"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="3"
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="A"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="B"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="B"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -94,7 +94,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -104,7 +104,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="C"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -115,14 +115,14 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="C"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -132,7 +132,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="D"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -143,7 +143,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="D"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -151,7 +151,7 @@
     <LinearLayout
         android:id="@+id/layoutE"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -161,7 +161,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="E"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -172,7 +172,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="E"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -180,7 +180,7 @@
     <LinearLayout
         android:id="@+id/layoutF"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -190,7 +190,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="F"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -201,7 +201,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="F"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -209,7 +209,7 @@
     <LinearLayout
         android:id="@+id/layoutG"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -219,7 +219,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="G"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -230,7 +230,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="G"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -238,7 +238,7 @@
     <LinearLayout
         android:id="@+id/layoutH"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -248,7 +248,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="H"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -259,7 +259,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="H"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -267,7 +267,7 @@
     <LinearLayout
         android:id="@+id/layoutI"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -277,7 +277,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="I"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -288,7 +288,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="I"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>
@@ -296,7 +296,7 @@
     <LinearLayout
         android:id="@+id/layoutJ"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
@@ -306,7 +306,7 @@
             android:layout_weight="20"
             android:background="@drawable/textview_answerslist"
             android:gravity="center"
-            android:text="J"
+            android:text=""
             android:textAlignment="center" />
 
         <TextView
@@ -317,7 +317,7 @@
             android:background="@drawable/textview_answerslist"
             android:paddingLeft="20dp"
             android:text="J"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="18sp" />
     </LinearLayout>

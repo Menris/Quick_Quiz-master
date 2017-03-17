@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.github.mikephil.charting.charts.PieChart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,15 +38,12 @@ public class QuizStatistic extends AppCompatActivity {
     public TextView quizTitle;
 
     public String PIN, groupName, teacherID;
-    public PieChart chart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_statistic);
-
-
 
         //questionsList = (ListView) findViewById(R.id.listView_quizStatistic);
         quizTitle = (TextView) findViewById(R.id.textView_quizTitle);
@@ -288,7 +284,6 @@ public class QuizStatistic extends AppCompatActivity {
                         } else if (adapter.getAnswer('J') == null) {
                             layoutJ.setVisibility(View.GONE);
                         }
-
                     }
 
                     @Override

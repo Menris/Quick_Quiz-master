@@ -40,8 +40,8 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
-        quizPIN = (TextView) findViewById(R.id.innerPIN);
-        userGroup = (TextView) findViewById(R.id.innerGroup);
+        /*quizPIN = (TextView) findViewById(R.id.innerPIN);
+        userGroup = (TextView) findViewById(R.id.innerGroup);*/
 
         //getting PIN number from "Starting" class
         Bundle extras = getIntent().getExtras();
@@ -49,13 +49,7 @@ public class StudentResult_innerUserNames extends AppCompatActivity {
             PIN = extras.getString("PIN_result");
             groupName = extras.getString("Group_result");
             Log.w("Amir", PIN);
-            quizPIN.setText(PIN);
-            Log.w("Amir", groupName);
-            userGroup.setText(groupName);
         }
-
-        PIN = quizPIN.getText().toString();
-        groupName = userGroup.getText().toString();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.graph);
