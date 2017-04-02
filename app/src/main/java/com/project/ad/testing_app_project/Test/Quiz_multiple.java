@@ -4,12 +4,16 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,8 +29,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.R;
+import com.project.ad.testing_app_project.Starting;
+import com.project.ad.testing_app_project.Tab_profile.tab1.ChatRoom;
 import com.project.ad.testing_app_project.Tab_profile.tab1.QuizStatistic_list;
 
 import java.util.ArrayList;
@@ -34,6 +41,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.RunnableFuture;
+import java.util.logging.Handler;
+import java.util.logging.StreamHandler;
 
 public class Quiz_multiple extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,6 +55,7 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
     TextView tv_question;
     TextView tv_quizTitle;
     String teacherID;
+    String quizTime;
     String myAnswer, correctAnswer;
     String studentGroup, studentName;
     String quizTitle;
@@ -71,6 +82,13 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
         tv_question = (TextView) findViewById(R.id.textView_question);
         btn_nextQuestion = (Button) findViewById(R.id.button_nextQuestions);
 
+        btn_nextQuestion.setShadowLayer(
+                1.5f, // radius
+                5.0f, // dx
+                5.0f, // dy
+                Color.parseColor("#000000") // shadow color
+        );
+
         //getting PIN number from "Starting" class
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -86,12 +104,36 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
                 tv_quizTitle.setText(quiz_question.getQuizTitle() + " ");
                 quizTitle = quiz_question.getQuizTitle();
                 teacherID = quiz_question.getTeacherID();
+                quizTime = quiz_question.getTime();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+
+        // TIMER COMMENTED FOR FUTURE USE
+
+        /*final android.os.Handler handler = new android.os.Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Quiz_multiple.this);
+                builder.setTitle("Alert!")
+                        .setMessage("Time! Time is over. Please submit answers you answered")
+                        .setCancelable(false)
+                        .setNegativeButton("ОК",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        finish();
+                                    }
+                                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        };
+        handler.postDelayed(runnable, 50000);*/
 
         //counting how many questions we have
         DatabaseReference countQRef = databaseReference.child("Tests").child(PIN).child("Questions");
@@ -169,6 +211,7 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
                 checkAnswerClick = true;
                 myAnswer = alphabet[i].toString();
                 view.setSelected(true);
+                //flashing();
             }
         });
 
@@ -177,6 +220,8 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == btn_nextQuestion && counter < numOfQuestions) {
+
+            stopFlashing();
 
             if (checkAnswerClick) {
                 //adding answer to user profile to
@@ -214,7 +259,7 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
 
             for (int i = 0; i < myAnswersArray.size(); i++) {
                 FirebaseDatabase.getInstance().getReference().child("userInformation").child(user.getUid()).child("myPassedQuizes").child(PIN).child("Question " + (i + 1)).child("myAnswer").setValue(myAnswersArray.get(i));
-                Log.e("myAnswer" , myAnswersArray.get(i));
+                Log.e("myAnswer", myAnswersArray.get(i));
             }
             //adding answer to teacher profile for graph data
             addAnswersArray();
@@ -278,6 +323,13 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), Starting.class);
+        startActivity(intent);
+    }
+
     private void addAnswersArray() {
 
         for (int i = 0; i < myAnswersArray.size(); i++) {
@@ -298,10 +350,25 @@ public class Quiz_multiple extends AppCompatActivity implements View.OnClickList
                         questionStatRef.child("myAnswer").setValue(questionAnswersArray + myAnswersArray.get(index));
                     }
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                 }
             });
         }
+    }
+
+    public void flashing() {
+
+        Animation animation = new AlphaAnimation(1, 0);         // Change alpha from fully visible to invisible
+        animation.setDuration(300);                             // duration - half a second
+        animation.setInterpolator(new LinearInterpolator());    // do not alter animation rate
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setRepeatCount(Animation.INFINITE);
+        btn_nextQuestion.startAnimation(animation);
+    }
+
+    public void stopFlashing() {
+        btn_nextQuestion.clearAnimation();
     }
 }

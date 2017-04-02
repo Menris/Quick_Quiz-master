@@ -3,6 +3,7 @@ package com.project.ad.testing_app_project.Tab_profile.tab1;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -45,7 +46,7 @@ public class Messages extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,9 +54,29 @@ public class Messages extends AppCompatActivity {
             }
         });
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+
+        DatabaseReference userRef = databaseReference.child("userInformation").child(user.getUid());
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Quiz_question userInfo = dataSnapshot.getValue(Quiz_question.class);
+                role = userInfo.getRole();
+
+                if (Objects.equals(role, "teachers")) {
+                    fab.setVisibility(View.VISIBLE);
+                } else {
+                    fab.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         lv_messages = (ListView) findViewById(R.id.listView_groupMessages);
         Query info = databaseReference.child("userInformation").child(user.getUid());
 

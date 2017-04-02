@@ -40,15 +40,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "358517152444-f9ic8tn3lcarfpba9as7v7sohs7l8qml.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "358517152444-ff9v1bpmqtdbibosrnvaob8t9vaqat0m.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.ad.QuickQuiz-ObjC"
               }
+            },
+            {
+              "client_id": "358517152444-f9ic8tn3lcarfpba9as7v7sohs7l8qml.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },

@@ -11,6 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.project.ad.testing_app_project.Starting">
 
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

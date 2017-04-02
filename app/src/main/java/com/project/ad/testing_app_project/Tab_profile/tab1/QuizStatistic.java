@@ -21,8 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.project.ad.testing_app_project.R;
-import com.project.ad.testing_app_project.Tab_profile.My_Profile;
-import com.project.ad.testing_app_project.Tab_profile.tab2.Check_Quiz_multiple;
 import com.project.ad.testing_app_project.Test.Quiz_multiple_adapter;
 
 import java.text.DecimalFormat;

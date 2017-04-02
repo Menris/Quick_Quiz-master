@@ -41,7 +41,7 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
     String role;
     Button myQuizes;
     Button myMessages;
-    TextView userName, userEmail;
+    TextView userName, userEmail, userGroup;
 
 
 
@@ -72,6 +72,7 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
         myMessages = (Button) getActivity().findViewById(R.id.btn_messages);
         userName = (TextView) getActivity().findViewById(R.id.textView_userName);
         userEmail = (TextView) getActivity().findViewById(R.id.textView_userEmail);
+        userGroup = (TextView) getActivity().findViewById(R.id.textView_myGroup);
         myQuizes.setVisibility(View.GONE);
 
         final ProgressDialog dialog;
@@ -87,6 +88,7 @@ public class Tab1_profile extends Fragment implements View.OnClickListener {
 
                 userName.setText(userInfo.getName() + " ");
                 userEmail.setText(user.getEmail() + " ");
+                userGroup.setText(userInfo.getGroup() + " ");
 
                 if (Objects.equals(role, "teachers")){
                     myQuizes.setVisibility(View.VISIBLE);

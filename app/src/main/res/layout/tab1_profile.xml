@@ -1,10 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fnBtn="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:fnBtn="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_registration"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context="com.project.ad.testing_app_project.Tab_profile.My_Profile$PlaceholderFragment">
@@ -37,12 +38,20 @@
                 android:id="@+id/textView_userEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/textView_userName"
                 android:fontFamily="casual"
                 android:text="TextView"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_myGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Group"
+                android:textColor="@color/authui_inputTextColor"
+                android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -50,23 +59,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.2"
-        >
+        android:layout_weight="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btn_messages"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:drawableLeft="@drawable/chat"
-                android:paddingTop="10dp"
                 android:elevation="20dp"
+                android:paddingTop="10dp"
                 android:text="Messages" />
 
             <Button

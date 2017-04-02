@@ -19,6 +19,7 @@ public class Quiz_question {
     public String role;
     public String group;
     public String name;
+    public String time;
 
     public Quiz_question() {
 
@@ -134,5 +135,13 @@ public class Quiz_question {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

@@ -10,37 +10,67 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/testing"
+        android:icon="@drawable/qq4"
         android:label="QuickQuiz"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity">
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration.SignUp" />
-        <activity android:name=".Starting" />
-        <activity android:name=".Registration.MainActivity" />
+        <activity
+            android:name=".Registration.SignUp"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Starting"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registration.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Tab_profile.My_Profile"
-            android:label="@string/title_activity_my__profile"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Test.Result" />
-        <activity android:name=".Tab_profile.tab1.StudentsResult" />
-        <activity android:name=".Tab_profile.tab1.StudentResult_innerGroups" />
-        <activity android:name=".Tab_profile.tab1.StudentResult_innerUserNames" />
+            android:icon="@drawable/qq32"
+            android:label="Profile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Test.Result"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Tab_profile.tab1.StudentsResult"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Tab_profile.tab1.StudentResult_innerGroups"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Tab_profile.tab1.StudentResult_innerUserNames"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Tab_profile.tab1.Messages"
             android:label="@string/title_activity_messages"
+            android:icon="@drawable/qq_small"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Tab_profile.tab1.ChatRoom" />
-        <activity android:name=".BeaconConnect" />
-        <activity android:name=".Tab_profile.tab1.QuizStatistic" />
-        <activity android:name=".Test.Quiz_multiple" />
-        <activity android:name=".Tab_profile.tab2.Check_Quiz_multiple"></activity>
+        <activity
+            android:name=".Tab_profile.tab1.ChatRoom"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BeaconConnect"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Tab_profile.tab1.QuizStatistic"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Test.Quiz_multiple"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Tab_profile.tab2.Check_Quiz_multiple"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

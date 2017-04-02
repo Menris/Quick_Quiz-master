@@ -56,6 +56,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -174,6 +175,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         userInformation.setName(Name);
         userInformation.setRole(role);
         userInformation.setEmail(Email);
+        groupName = groupName.replace(" ", "");
         userInformation.setGroup(groupName);
 
         //getting the current logged in user

@@ -2,6 +2,7 @@ package com.project.ad.testing_app_project.Tab_profile.tab2;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -67,6 +68,16 @@ public class Tab2_overview extends Fragment {
                 //Populate the item
                 TextView text = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                text.setTextColor(Color.WHITE);
+                text2.setTextColor(Color.WHITE);
+
+                text.setShadowLayer(
+                        1.5f, // radius
+                        5.0f, // dx
+                        5.0f, // dy
+                        Color.parseColor("#000000") // shadow color
+                );
+
                 text.setText(person.getQuizTitle());
                 text2.setText(person.getQuizID()+ " - You have" +" " + person.getUserResult() + " correct answers");
             }

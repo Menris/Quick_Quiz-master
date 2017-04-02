@@ -1,5 +1,7 @@
 package com.project.ad.testing_app_project.Tab_profile.tab1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.ad.testing_app_project.R;
+import com.project.ad.testing_app_project.Test.Quiz_multiple;
 
 import java.util.Objects;
 
@@ -55,10 +58,26 @@ public class ChatRoom extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText input = (EditText) findViewById(R.id.editText);
-                FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("teachers").child(teacherName).child("chat").push()
-                        .setValue(new Message(input.getText().toString(),
-                                FirebaseAuth.getInstance().getCurrentUser().getEmail()));
-                input.setText("");
+                if (Objects.equals(input.getText().toString(), "")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChatRoom.this);
+                    builder.setTitle("Alert!")
+                            .setMessage("Please, enter your message!")
+                            .setCancelable(false)
+                            .setNegativeButton("ОК",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("teachers").child(teacherName).child("chat").push()
+                            .setValue(new Message(input.getText().toString(),
+                                    FirebaseAuth.getInstance().getCurrentUser().getEmail()));
+                    input.setText("");
+                }
+
             }
         });
         if (Objects.equals(role, "teachers")) {
@@ -66,7 +85,6 @@ public class ChatRoom extends AppCompatActivity {
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("messages").child("groups").child(groupName).child("teachers").child(teacherName).child("chat");
-
 
 
         ListView listMessages = (ListView) findViewById(R.id.listView);

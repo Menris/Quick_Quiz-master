@@ -34,6 +34,7 @@ public class Quiz_multiple_adapter {
     String quizTitle;
     String correctAnswer;
     String teacherID;
+    String time;
 
     public Quiz_multiple_adapter() {
 
@@ -194,5 +195,13 @@ public class Quiz_multiple_adapter {
 
     public void setAnswerJ(String answerJ) {
         this.answerJ = answerJ;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

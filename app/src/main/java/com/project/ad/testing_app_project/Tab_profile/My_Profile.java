@@ -3,7 +3,6 @@ package com.project.ad.testing_app_project.Tab_profile;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -20,8 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.project.ad.testing_app_project.Registration.MainActivity;
 import com.project.ad.testing_app_project.R;
 import com.project.ad.testing_app_project.Starting;
-import com.project.ad.testing_app_project.Tab_profile.Tab3_materials;
-import com.project.ad.testing_app_project.Tab_profile.tab1.Messages;
+import com.project.ad.testing_app_project.Tab_profile.tab3.Tab3_materials;
 import com.project.ad.testing_app_project.Tab_profile.tab1.Tab1_profile;
 import com.project.ad.testing_app_project.Tab_profile.tab2.Tab2_overview;
 
